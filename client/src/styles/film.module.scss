@@ -8,12 +8,12 @@
     position: relative;
     min-height: 100%;
     font-family: "RobotoRegular";
+    overflow: hidden;
     .filmTitle{
         background-color: black;
         min-height: 40px;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
         .filmName{
             display: flex; // id может быть большой допустим 372468264827436183764, и если его отцентрировать по вертикали допустим с line-height, текст будет падать на другую строку и будет широко растягиваться, поэтому flex выбирал для быстроты решения
             flex:1;  
