@@ -1,0 +1,38 @@
+.film{
+    margin: 20px auto;
+    width: 300px;
+    flex-basis: 350px;
+    border: 1px solid rgba(0, 0, 0, 0.247);
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: relative;
+    min-height: 100%;
+    font-family: "RobotoRegular";
+    .filmTitle{
+        background-color: black;
+        min-height: 40px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        .filmName{
+            display: flex; // id может быть большой допустим 372468264827436183764, и если его отцентрировать по вертикали допустим с line-height, текст будет падать на другую строку и будет широко растягиваться, поэтому flex выбирал для быстроты решения
+            flex:1;  
+            align-items: center;
+            justify-content: center;
+            color: white;
+            word-break: break-all;
+            font-size: 18px;
+            font-family: "RobotoBold";
+        }
+    }
+    .filmInfoContainer{
+        box-sizing: border-box;
+        padding: 10px;
+        .filmInfoVisibilityController{
+            margin-bottom: 15px;
+        }
+        .filmInfo{
+            margin-bottom: 8px;
+        }
+    }
+}

@@ -1,5 +1,7 @@
 import styles from '../styles/main.module.scss'
+import Films from './Films'
 import SearchField from './SearchField'
+import Actions from './Actions'
 function Main() {
   return (
     <main className={styles.main}>
@@ -8,6 +10,10 @@ function Main() {
                 <SearchField label='author'/>
                 <SearchField label='film'/>
             </form>
+            <section>
+                <Actions/>
+                <Films/>
+            </section>
         </div>
     </main>
   );
