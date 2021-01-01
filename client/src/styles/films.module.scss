@@ -3,5 +3,14 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: stretch;
-    border: none;
+    margin-bottom: 40px;
+    .filmsInfo{
+        width: 100%;
+        padding: 30px 0;
+        box-sizing: border-box;
+        font-family: "RobotoBold";
+        text-align: center;
+        font-size: 25px;
+        text-align: center;
+    }
 }

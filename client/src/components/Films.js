@@ -1,52 +1,24 @@
+import {useEffect} from 'react'
 import styles from '../styles/films.module.scss'
+import {connect} from 'react-redux'
+import {getFilms} from '../actions/'
 import Film from './Film'
-const films = [
-    {
-        "id": 1,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 2,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 3,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 4,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 5,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 6,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-]
-function Films() {
+function Films({filmsData, getFilms}) {
+    useEffect(()=>{
+        getFilms()
+    }, [getFilms])
     const renderFilms = () => {
-        return films.map(film => <Film key={film.id} film={film}/>)
+        if(filmsData.loading){
+            return <div className={styles.filmsInfo}>
+                Loading...
+            </div>
+        }
+        if(!filmsData.films.length){
+            return <div className={styles.filmsInfo}>
+                No available films
+            </div>
+        }
+        return filmsData.films.map(film => <Film key={film.id} film={film}/>)
     }
     return (
         <div className={styles.films}>
@@ -54,5 +26,10 @@ function Films() {
         </div>
     );
 }
-
-export default Films;
+const mapStateToProps = store => ({
+    filmsData: store.films
+  });
+  const mapDispatchToProps = {
+     getFilms
+  }
+  export default connect(mapStateToProps, mapDispatchToProps)(Films);
