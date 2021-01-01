@@ -106,7 +106,7 @@ function AddNew() {
     })
   }
   return (
-   <form className={styles.form}>   
+   <form className={styles.form}>    
       <div className={styles.formTitleContainer}>
           <h3 className={styles.formTitle}>Add new film</h3> 
       </div>   

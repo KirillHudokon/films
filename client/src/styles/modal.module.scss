@@ -21,4 +21,10 @@
     box-shadow: 0px 0px 8px -4px rgba(0,0,0,0.62);
     z-index: 3002;
     border-radius: 10px;
+    .close{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
 }

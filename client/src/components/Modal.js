@@ -1,4 +1,4 @@
-import { Divider } from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close';
 import ReactDOM from 'react-dom'
 import styles from '../styles/modal.module.scss'
 function Modal({children, changeModalVisibility}){
@@ -6,6 +6,9 @@ function Modal({children, changeModalVisibility}){
         <>
             <div className={styles.modalBg} onClick={changeModalVisibility}/>
             <div className={styles.modal}>
+                <div className={styles.close} onClick={changeModalVisibility}>
+                    <CloseIcon/> 
+                </div> 
                 {children}
             </div>
         </>

@@ -10,12 +10,13 @@
     font-family: "RobotoRegular";
     overflow: hidden;
     box-shadow: 0px 0px 8px -4px rgba(0,0,0,0.62);
-    .filmTitle{
+    .filmHeader{
         background-color: black;
         min-height: 40px;
         display: flex;
         flex-direction: column;
-        .filmName{
+        position: relative;
+        .filmTitle{
             display: flex; // id может быть большой допустим 372468264827436183764, и если его отцентрировать по вертикали допустим с line-height, текст будет падать на другую строку и будет широко растягиваться, поэтому flex выбирал для быстроты решения
             flex:1;  
             align-items: center;
@@ -24,6 +25,22 @@
             word-break: break-all;
             font-size: 18px;
             font-family: "RobotoBold";
+        }
+        .deleteFilm{
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+            right:10px;
+            cursor: pointer;
+            [class^="MuiSvgIcon-root"]{
+                color: white;
+                transition: .3s;
+            }
+            &:hover{
+                [class^="MuiSvgIcon-root"]{
+                    color: red!important;
+                }
+            }
         }
     }
     .filmInfoContainer{
