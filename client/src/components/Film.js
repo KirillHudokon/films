@@ -4,7 +4,9 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 function Film({film}) {
     const [isOpen, setVisibility] = useState(true);
-    const changeVisibility = () => setVisibility(!isOpen)
+    const changeVisibility = (e) =>{
+       setVisibility(!isOpen) 
+    } 
     const renderButton = () => {
         return <Button variant="outlined" fullWidth={true} onClick={changeVisibility}>
             {isOpen ? "Закрыть" : "Посмотреть"}
@@ -13,7 +15,7 @@ function Film({film}) {
     const renderFilmInfo = () => {
         const filmInfo = Object.entries(film).map(info => {
             if(info[0] !== 'id'){
-                return <div key={film.id} className={styles.filmInfo}>
+                return <div key={`${film.id} - ${info[0]} : ${info[1]}`} className={styles.filmInfo}>
                     {`${info[0]} : ${info[1]}`}
                 </div>
             }

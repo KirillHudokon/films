@@ -2,6 +2,7 @@ import styles from '../styles/main.module.scss'
 import Films from './Films'
 import SearchField from './SearchField'
 import ActionsBar from './ActionsBar'
+import DragFile from './DragFile'
 function Main() {
   return (
     <main className={styles.main}>
@@ -13,6 +14,7 @@ function Main() {
             <section>
                 <ActionsBar/>
                 <Films/>
+                <DragFile/>
             </section>
         </div>
     </main>

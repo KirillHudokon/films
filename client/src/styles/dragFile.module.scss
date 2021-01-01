@@ -1,0 +1,16 @@
+.dragFile{
+    width: 100%;
+    border-radius: 15px;
+    border: 2px solid black;
+    height: 90px;
+    cursor: pointer;
+    font-family: "RobotoRegular";
+    font-size: 25px;
+    line-height: 90px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.dragActive{
+    border: 2px dashed rgb(180, 180, 180);
+    color: rgb(180, 180, 180);
+}
