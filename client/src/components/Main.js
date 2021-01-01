@@ -1,7 +1,7 @@
 import styles from '../styles/main.module.scss'
 import Films from './Films'
 import SearchField from './SearchField'
-import Actions from './Actions'
+import ActionsBar from './ActionsBar'
 function Main() {
   return (
     <main className={styles.main}>
@@ -11,7 +11,7 @@ function Main() {
                 <SearchField label='film'/>
             </form>
             <section>
-                <Actions/>
+                <ActionsBar/>
                 <Films/>
             </section>
         </div>

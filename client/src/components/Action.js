@@ -1,9 +1,9 @@
 import styles from '../styles/action.module.scss'
 import Label from './Label'
 import Button from '@material-ui/core/Button';
-import { useStyles } from '../utils/hooks';
+import { useActionStyles } from '../utils/hooks';
 function Action({label, value, action}) {
-const classes = useStyles()
+const classes = useActionStyles()
   return (
     <div className={styles.actions}>
         <Label label={label}>

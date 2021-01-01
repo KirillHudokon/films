@@ -1,0 +1,20 @@
+.form{
+    box-sizing: border-box;
+
+    .formTitleContainer{
+        margin-top: 5px;
+        margin-bottom: 15px;
+        .formTitle{
+            font-size: 21px;
+            text-align: center;
+            font-family: 'RobotoBold';
+            margin-bottom: 15px;
+        }
+    }
+    .fieldContainer{
+        margin-bottom: 30px;
+        .field{
+            margin-bottom: 15px;
+        }
+    }
+}
