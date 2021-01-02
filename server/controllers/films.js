@@ -20,16 +20,26 @@ const createFilm = async (req, res) => {
     }
 }
 const deleteFilm = async (req, res) => {
-    console.log(req)
     const { id } = req.params
     try{
-        console.log(id)
-        //if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(400).send('No post with that id')
         await Films.findByIdAndRemove(id)
         res.json(await Films.find())
     }catch(e){
-        console.log(e)
         res.status(400).json({message: e.message})
     }
 }
-module.exports = {getFilms, createFilm, deleteFilm}
+const sortAlphabetically = async (req,res) => {
+    const sort = {title: 1}
+    try{
+        res.status(200).json(await Films.find().sort(sort))
+    }catch(e){
+        res.status(400).json({message: e.message})
+    }
+}
+const sortFilms = async (req, res) => {
+    const { type } = req.params
+    if(type.toLowerCase() === 'a-z'){
+        await sortAlphabetically(req, res)
+    }
+}
+module.exports = {getFilms, createFilm, deleteFilm, sortFilms}

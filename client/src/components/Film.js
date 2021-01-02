@@ -2,6 +2,7 @@ import {useState} from "react"
 import styles from "../styles/film.module.scss";
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import {textValues} from '../utils/textValues'
 function Film({film, deleteFilm}) {
     const [isOpen, setVisibility] = useState(true);
     const changeVisibility = (e) =>{
@@ -16,7 +17,7 @@ function Film({film, deleteFilm}) {
         const filmInfo = Object.entries(film).map(info => {
             if(info[0] !== '_id' && info[0] !== '__v'){
                 return <div key={`${film.id} - ${info[0]} : ${info[1]}`} className={styles.filmInfo}>
-                    {`${info[0]} : ${info[1]}`}
+                    {`${textValues[info[0]]} : ${info[1]}`}
                 </div>
             }
         })

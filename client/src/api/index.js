@@ -1,6 +1,6 @@
 import axios from 'axios'
 const url = "http://localhost:5000/films"
-export default class Api {
+export class FilmsApi {
     get(){
         return axios.get(url)
     }
@@ -9,5 +9,11 @@ export default class Api {
     }
     delete(id){
         return axios.delete(`${url}/${id}`)
+    }
+}
+
+export class FilmsActionsApi {
+    sort(type){
+        return axios.post(`${url}/sort/${type}`)
     }
 }

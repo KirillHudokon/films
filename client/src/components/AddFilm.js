@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { green } from '@material-ui/core/colors';
 import { useAddNewStyles } from '../utils/hooks';
 import {addFilm} from '../actions'
+import {textValues} from '../utils/textValues'
 const initialState = {
     title: '',
     format: '',
@@ -73,13 +74,18 @@ function AddFilm({addFilm, closeModal}) {
             }
         }
     }
-    const filterErrors = Object.entries(state).map(info => validation[info[0]](info[1])).filter(filteredInfo=>filteredInfo)
+    const filterErrors = Object.entries(state).map(info => {
+        if(typeof info[1] !== 'number'){
+            return  validation[info[0]](info[1].trim())
+        }
+        return validation[info[0]](info[1])
+    }).filter(filteredInfo=>filteredInfo)
     setErrors(filterErrors)
-
+    return filterErrors
   }
   const sumbit = () => {
-       check()
-      if(!errors.length){
+      const savedErrors = check()
+      if(!savedErrors.length){
         addFilm(state)
         closeModal()
       }
@@ -95,7 +101,7 @@ function AddFilm({addFilm, closeModal}) {
                 type={field === "releaseYear" ? "number" : "text"}
                 id={error ? "outlined-error-helper-text" : "standard-required"}
                 variant="outlined" 
-                label={field}
+                label={textValues[field]}
                 onChange={(e)=>{
                     dispatch({
                         type: SET_NEW_INFO,

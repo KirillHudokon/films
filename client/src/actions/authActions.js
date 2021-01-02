@@ -1,10 +1,11 @@
 import * as types from '../types'
-import Api from '../api/'
-const api = new Api()
+import {FilmsApi, FilmsActionsApi} from '../api/'
+const filmsApi = new FilmsApi()
+const filmsActionsApi = new FilmsActionsApi()
 const films = [
     {
         "id": 1,
-        "Title": "Blazing Saddles",
+        "Title": "Blazing Saddles", 
         "Release Year": 1974,
          Format: "VHS",
         "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
@@ -93,22 +94,22 @@ export const addFilmFail=(error)=>({
     payload: error,
 })
 
-export const filterFilmsLoading = () => ({
-    type: types.FILTER_FILMS_LOADING,
+export const sortFilmsAlphabeticallyLoading = () => ({
+    type: types.SORT_FILMS_ALPHABETICALLY_LOADING,
 })
-export const filterFilmsSuccess=(films)=>({
-    type: types.FILTER_FILMS_SUCCESS,
+export const sortFilmsAlphabeticallySuccess=(films)=>({
+    type: types.SORT_FILMS_ALPHABETICALLY_SUCCESS,
     payload: films
 })
-export const filterFilmsFail=(error)=>({
-    type: types.FILTER_FILMS_FAIL,
+export const sortFilmsAlphabeticallyFail=(error)=>({
+    type: types.SORT_FILMS_ALPHABETICALLY_FAIL,
     payload: error,
 })
 
 export const getFilms = () => async dispatch => {
     try{
         dispatch(getFilmsLoading())
-        const {data} = await api.get()
+        const {data} = await filmsApi.get()
         dispatch(getFilmsSuccess(data))
     }catch(e){
         console.log(e)
@@ -127,7 +128,7 @@ export const searchBy = (by) => dispatch => {
 export const deleteFilm = (film) => async dispatch =>{
     try{
         dispatch(deleteFilmLoading())
-        const {data} = await api.delete(film._id)
+        const {data} = await filmsApi.delete(film._id)
         dispatch(deleteFilmSuccess(data))
     }catch(e){
         dispatch(deleteFilmFail(e.message))
@@ -136,7 +137,17 @@ export const deleteFilm = (film) => async dispatch =>{
 export const addFilm = (film) => async dispatch => {
     try{
         dispatch(addFilmLoading())
-        const {data} = await api.post(film)
+        const {data} = await filmsApi.post(film)
+        dispatch(addFilmSuccess(data))
+    }catch(e){
+        dispatch(addFilmFail(e.message))
+    }
+}
+
+export const sortFilmsAlphabetically = () => async dispatch => {
+    try{
+        dispatch(addFilmLoading())
+        const {data} = await filmsActionsApi.sort('a-z')
         dispatch(addFilmSuccess(data))
     }catch(e){
         dispatch(addFilmFail(e.message))
