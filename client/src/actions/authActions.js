@@ -1,4 +1,6 @@
 import * as types from '../types'
+import Api from '../api/'
+const api = new Api()
 const films = [
     {
         "id": 1,
@@ -103,13 +105,15 @@ export const filterFilmsFail=(error)=>({
     payload: error,
 })
 
-export const getFilms = () => dispatch => {
-    dispatch(getFilmsLoading())
-    return new Promise((rs,rj)=>{
-        setTimeout(()=>{
-            rj(dispatch(getFilmsFail('fail')))
-        },3000)
-    })
+export const getFilms = () => async dispatch => {
+    try{
+        dispatch(getFilmsLoading())
+        const films = await api.get()
+        dispatch(getFilmsSuccess(films))
+    }catch(e){
+        console.log(e)
+        dispatch(getFilmsFail(e.message))
+    }
 }
 export const searchBy = (by) => dispatch => {
     dispatch(searchFilmsLoading())
