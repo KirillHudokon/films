@@ -73,14 +73,15 @@ function AddFilm({addFilm, closeModal}) {
             }
         }
     }
-    setErrors(Object.entries(state).map(info => validation[info[0]](info[1])).filter(filteredInfo=>filteredInfo))
+    const filterErrors = Object.entries(state).map(info => validation[info[0]](info[1])).filter(filteredInfo=>filteredInfo)
+    setErrors(filterErrors)
+
   }
   const sumbit = () => {
-      check()
-      console.log(errors)
+       check()
       if(!errors.length){
         addFilm(state)
-        //closeModal()
+        closeModal()
       }
   }
   const renderFields = () => {
@@ -88,9 +89,10 @@ function AddFilm({addFilm, closeModal}) {
         const error = errors.find(fieldError=> fieldError.name === field)
         return <div className={styles.field}>
             <TextField 
+                required
                 error={error} 
                 name={field}
-                required
+                type={field === "releaseYear" ? "number" : "text"}
                 id={error ? "outlined-error-helper-text" : "standard-required"}
                 variant="outlined" 
                 label={field}
@@ -99,7 +101,7 @@ function AddFilm({addFilm, closeModal}) {
                         type: SET_NEW_INFO,
                         payload: {
                             name: field,
-                            value: e.target.value
+                            value:  field === "releaseYear" ? Number(e.target.value) : e.target.value 
                         }
                     })
                 }}

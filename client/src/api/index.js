@@ -8,6 +8,6 @@ export default class Api {
         return axios.post(url, film)
     }
     delete(id){
-        return axios.delete(url, id)
+        return axios.delete(`${url}/${id}`)
     }
 }

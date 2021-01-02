@@ -89,7 +89,7 @@ export const addFilmSuccess=(data)=>({
     payload: data
 })
 export const addFilmFail=(error)=>({
-    type: types.DELETE_FILM_FAIL,
+    type: types.ADD_FILM_FAIL,
     payload: error,
 })
 
@@ -108,8 +108,8 @@ export const filterFilmsFail=(error)=>({
 export const getFilms = () => async dispatch => {
     try{
         dispatch(getFilmsLoading())
-        const films = await api.get()
-        dispatch(getFilmsSuccess(films))
+        const {data} = await api.get()
+        dispatch(getFilmsSuccess(data))
     }catch(e){
         console.log(e)
         dispatch(getFilmsFail(e.message))
@@ -124,18 +124,21 @@ export const searchBy = (by) => dispatch => {
     })
 }
 
-export const deleteFilm = (film) => dispatch =>{
-    console.log(film)
-    dispatch(deleteFilmLoading())
-    dispatch(deleteFilmSuccess())
-    dispatch(deleteFilmFail())
+export const deleteFilm = (film) => async dispatch =>{
+    try{
+        dispatch(deleteFilmLoading())
+        const {data} = await api.delete(film._id)
+        dispatch(deleteFilmSuccess(data))
+    }catch(e){
+        dispatch(deleteFilmFail(e.message))
+    }
 }
-export const addFilm = (film) => dispatch => {
-    console.log(film)
-    dispatch(addFilmLoading())
-    return new Promise((rs,rj)=>{
-        setTimeout(()=>{
-            rj(dispatch(addFilmFail('faill')))
-        },3000)
-    })
+export const addFilm = (film) => async dispatch => {
+    try{
+        dispatch(addFilmLoading())
+        const {data} = await api.post(film)
+        dispatch(addFilmSuccess(data))
+    }catch(e){
+        dispatch(addFilmFail(e.message))
+    }
 }
