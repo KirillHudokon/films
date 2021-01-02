@@ -3,22 +3,22 @@ import styles from '../styles/films.module.scss'
 import {connect} from 'react-redux'
 import {getFilms} from '../actions/'
 import Film from './Film'
-function Films({filmsData, getFilms}) {
+function Films({films, loading, getFilms}) {
     useEffect(()=>{
         getFilms()
     }, [getFilms])
     const renderFilms = () => {
-        if(filmsData.loading){
+        if(loading){
             return <div className={styles.filmsInfo}>
                 Loading...
             </div>
         }
-        if(!filmsData.films.length){
+        if(!films.length){
             return <div className={styles.filmsInfo}>
                 No available films
             </div>
         }
-        return filmsData.films.map(film => <Film key={film.id} film={film}/>)
+        return films.map(film => <Film key={film.id} film={film}/>)
     }
     return (
         <div className={styles.films}>
@@ -27,9 +27,10 @@ function Films({filmsData, getFilms}) {
     );
 }
 const mapStateToProps = store => ({
-    filmsData: store.films
-  });
-  const mapDispatchToProps = {
-     getFilms
-  }
+    loading: store.films.loading,
+    films: store.films.films
+});
+const mapDispatchToProps = {
+    getFilms
+}
   export default connect(mapStateToProps, mapDispatchToProps)(Films);

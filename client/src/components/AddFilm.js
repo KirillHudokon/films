@@ -1,10 +1,12 @@
 import {useState, useReducer} from 'react'
+import {connect} from 'react-redux'
 import styles from '../styles/addnew.module.scss'
 import TextField from '@material-ui/core/TextField';
 import {createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { green } from '@material-ui/core/colors';
 import { useAddNewStyles } from '../utils/hooks';
+import {addFilm} from '../actions'
 const initialState = {
     title: '',
     format: '',
@@ -20,7 +22,7 @@ function reducer(state, action) {
         throw new Error();
     }
   }
-function AddNew() {
+function AddFilm({addFilm, closeModal}) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [errors, setErrors] = useState([])
   const classes = useAddNewStyles();
@@ -75,6 +77,11 @@ function AddNew() {
   }
   const sumbit = () => {
       check()
+      console.log(errors)
+      if(!errors.length){
+        addFilm(state)
+        //closeModal()
+      }
   }
   const renderFields = () => {
     return Object.keys(initialState).map(field=>{
@@ -116,12 +123,14 @@ function AddNew() {
       <div className={styles.buttonContainer}>
         <ThemeProvider theme={theme}>
             <Button variant="contained" color="primary" className={classes.root} onClick={sumbit}>
-                Add new 
+                Add film 
             </Button>
         </ThemeProvider>
       </div>
     </form>
   );
 }
-
-export default AddNew;
+const mapDispatchToProps = {
+    addFilm
+}
+export default connect(null, mapDispatchToProps)(AddFilm);

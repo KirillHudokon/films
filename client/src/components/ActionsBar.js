@@ -2,13 +2,13 @@ import {useState} from 'react'
 import styles from '../styles/actions.module.scss'
 import Action from './Action'
 import Modal from './Modal'
-import AddNew from './AddNew'
+import AddFilm from './AddFilm'
 function ActionsBar() {
   const [isModalOpen, setModalVisibility] = useState(false)
   const changeModalVisibility = () => setModalVisibility(!isModalOpen)
   const renderModal = () => {
     return isModalOpen ? <Modal changeModalVisibility={changeModalVisibility}>
-        <AddNew/>
+        <AddFilm closeModal={changeModalVisibility}/>
     </Modal> : null
   }
   return (

@@ -62,7 +62,7 @@ export const searchFilmsSuccess=(films)=>({
     type: types.SEARCH_FILM_SUCCESS,
     payload: films,
 })
-export const searchFilmsError=(error)=>({
+export const searchFilmsFail=(error)=>({
     type: types.SEARCH_FILM_FAIL,
     payload: error,
 })
@@ -74,7 +74,7 @@ export const deleteFilmSuccess=(data)=>({
     type: types.DELETE_FILM_SUCCESS,
     payload: data
 })
-export const deleteFilmError=(error)=>({
+export const deleteFilmFail=(error)=>({
     type: types.DELETE_FILM_FAIL,
     payload: error,
 })
@@ -86,7 +86,7 @@ export const addFilmSuccess=(data)=>({
     type: types.ADD_FILM_SUCCESS,
     payload: data
 })
-export const addFilmError=(error)=>({
+export const addFilmFail=(error)=>({
     type: types.DELETE_FILM_FAIL,
     payload: error,
 })
@@ -98,7 +98,7 @@ export const filterFilmsSuccess=(films)=>({
     type: types.FILTER_FILMS_SUCCESS,
     payload: films
 })
-export const filterFilmsError=(error)=>({
+export const filterFilmsFail=(error)=>({
     type: types.FILTER_FILMS_FAIL,
     payload: error,
 })
@@ -107,7 +107,7 @@ export const getFilms = () => dispatch => {
     dispatch(getFilmsLoading())
     return new Promise((rs,rj)=>{
         setTimeout(()=>{
-            rs(dispatch(getFilmsSuccess(films)))
+            rj(dispatch(getFilmsFail('fail')))
         },3000)
     })
 }
@@ -124,11 +124,14 @@ export const deleteFilm = (film) => dispatch =>{
     console.log(film)
     dispatch(deleteFilmLoading())
     dispatch(deleteFilmSuccess())
-    dispatch(deleteFilmError())
+    dispatch(deleteFilmFail())
 }
 export const addFilm = (film) => dispatch => {
     console.log(film)
     dispatch(addFilmLoading())
-    dispatch(addFilmSuccess())
-    dispatch(addFilmError())
+    return new Promise((rs,rj)=>{
+        setTimeout(()=>{
+            rj(dispatch(addFilmFail('faill')))
+        },3000)
+    })
 }
