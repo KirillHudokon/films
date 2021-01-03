@@ -61,7 +61,8 @@ const searchFilms = async (req, res) => {
     }
 }
 const importFile = async (req, res) => {
-    const {file} = req.body
-    parseFile(file.path)
+    console.log(req.files.file)
+    //const {file} = req.body
+    //parseFile(file.path)
 }
 module.exports = {getFilms, createFilm, deleteFilm, sortFilms, searchFilms, importFile}

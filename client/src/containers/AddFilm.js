@@ -44,7 +44,7 @@ function AddFilm({addFilm, closeModal}) {
         },
         format(val){
             const newVal = val.toLowerCase()
-            if(newVal !== 'vhs' && val !== 'dvd' && val !== 'blu-ray'){
+            if(newVal !== 'vhs' && newVal !== 'dvd' && newVal !== 'blu-ray'){
                 return {
                     name : 'format',
                     message: 'unknown format'
