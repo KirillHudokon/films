@@ -1,5 +1,5 @@
 import {shallow} from "enzyme";
-import chai, {expect} from "chai";
+import chai from "chai";
 import chaiEnzyme from "chai-enzyme";
 import Header from "../components/Header";
 describe("Testing <Header/> Component", () => {

@@ -1,6 +1,6 @@
 import enableHooks from 'jest-react-hooks-shallow';
 import {shallow} from "enzyme";
-import chai, {expect} from "chai";
+import chai from "chai";
 import chaiEnzyme from "chai-enzyme";
 import Film from "../components/Film";
 enableHooks(jest, { dontMockByDefault: true });

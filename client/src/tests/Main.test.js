@@ -1,5 +1,4 @@
-import {shallow} from "enzyme";
-import chai, {expect} from "chai";
+import chai from "chai";
 import configureStore from 'redux-mock-store'
 import chaiEnzyme from "chai-enzyme";
 import Main from "../containers/Main";
@@ -7,7 +6,7 @@ import { mountWithRedux } from "../utils/tests/mountWithRedux";
 import thunk from 'redux-thunk'
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
-describe("Testing <Mount/> Component", () => {
+describe("Testing <Main/> Component", () => {
     const store = mockStore({
         films:{
             loading: false,

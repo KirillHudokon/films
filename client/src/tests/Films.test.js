@@ -1,5 +1,5 @@
 import {shallow} from "enzyme";
-import chai, {expect} from "chai";
+import chai from "chai";
 import configureStore from 'redux-mock-store'
 import chaiEnzyme from "chai-enzyme";
 import Films from "../containers/Films";

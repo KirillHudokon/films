@@ -1,5 +1,5 @@
 import {filmsReducer} from '../reducers/filmsReducer'
-import chai, {expect} from "chai";
+import chai from "chai";
 import * as types from '../types/'
 const initialState = {
     films: [],

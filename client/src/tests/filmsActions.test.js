@@ -1,4 +1,4 @@
-import chai, {expect} from "chai";
+import chai from "chai";
 import * as ac from '../actions/'
 import * as types from '../types'
 describe('testing films actions',() =>{
