@@ -51,14 +51,6 @@ describe("Testing <Film/> Component", () => {
             chai.expect(wrapper.find('.filmInfo')).to.have.length(Object.keys(film).length-1);
         })
     })    
-   
-    
-    it('testing closed button', ()=> {
-        //chai.expect(wrapper.find('.filmInfoVisibilityController').text()).to.equal('Open')
-        
-    })   
-     // chai.expect(wrapper.find('.logo').text()).to.equal('Films info')
-     //console.log(wrapper.debug())
     
    chai.use(chaiEnzyme());
 });
