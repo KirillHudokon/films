@@ -20,6 +20,12 @@ export class FilmsActionsApi {
         return axios.post(`${url}/search/${how}`, {text})
     }
     import(file){
-        return axios.post(`${url}/import/`, {file})
+        const formData = new FormData()
+        formData.append('file', file)
+        return axios.post(`${url}/import/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
