@@ -59,4 +59,8 @@ const searchFilms = async (req, res) => {
         res.status(400).json({message:e.message})
     }
 }
-module.exports = {getFilms, createFilm, deleteFilm, sortFilms, searchFilms}
+const importFile = async (req, res) => {
+    const {file} = req.body;
+    console.log(file)
+}
+module.exports = {getFilms, createFilm, deleteFilm, sortFilms, searchFilms, importFile}

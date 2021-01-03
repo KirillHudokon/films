@@ -20,6 +20,6 @@ export class FilmsActionsApi {
         return axios.post(`${url}/search/${how}`, {text})
     }
     import(file){
-        return axios.post(`${url}/import/`, file)
+        return axios.post(`${url}/import/`, {file})
     }
 }
