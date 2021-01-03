@@ -1,11 +1,11 @@
 import {useState} from 'react'
 import {connect} from 'react-redux'
-import {sortFilmsAlphabetically} from '../actions/'
+import {sortFilms} from '../actions/'
 import styles from '../styles/actions.module.scss'
 import Action from './Action'
 import Modal from './Modal'
 import AddFilm from './AddFilm'
-function ActionsBar({sortFilmsAlphabetically}) {
+function ActionsBar({sortFilms}) {
   const [isModalOpen, setModalVisibility] = useState(false)
   const changeModalVisibility = () => setModalVisibility(!isModalOpen)
   const renderModal = () => {
@@ -16,7 +16,7 @@ function ActionsBar({sortFilmsAlphabetically}) {
   return (
    <>   
         <div className={styles.actions}>
-            <Action label="Filter" value="Sort A-Z" action={sortFilmsAlphabetically}/>
+            <Action label="Filter" value="Sort A-Z" action={sortFilms}/>
             <Action label="Add new" value="+" action={changeModalVisibility}/>
         </div>
         {renderModal()}
@@ -24,6 +24,6 @@ function ActionsBar({sortFilmsAlphabetically}) {
   );
 }
 const mapDispatchToProps = {
-  sortFilmsAlphabetically
+  sortFilms
 }
 export default connect(null, mapDispatchToProps)(ActionsBar);

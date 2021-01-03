@@ -39,15 +39,15 @@ export const addFilmFail=(error)=>({
     payload: error,
 })
 
-export const sortFilmsAlphabeticallyLoading = () => ({
-    type: types.SORT_FILMS_ALPHABETICALLY_LOADING,
+export const sortFilmsLoading = () => ({
+    type: types.SORT_FILMS_LOADING,
 })
-export const sortFilmsAlphabeticallySuccess=(films)=>({
-    type: types.SORT_FILMS_ALPHABETICALLY_SUCCESS,
+export const sortFilmsSuccess=(films)=>({
+    type: types.SORT_FILMS_SUCCESS,
     payload: films
 })
-export const sortFilmsAlphabeticallyFail=(error)=>({
-    type: types.SORT_FILMS_ALPHABETICALLY_FAIL,
+export const sortFilmsFail=(error)=>({
+    type: types.SORT_FILMS_FAIL,
     payload: error,
 })
 
@@ -109,14 +109,14 @@ export const addFilm = (film) => async dispatch => {
     }
 }
 
-export const sortFilmsAlphabetically = () => async dispatch => {
+export const sortFilms= () => async dispatch => {
     try{
-        dispatch(sortFilmsAlphabeticallyLoading())
+        dispatch(sortFilmsLoading())
         const {data} = await filmsActionsApi.sort('a-z')
-        dispatch(sortFilmsAlphabeticallySuccess(data))
+        dispatch(sortFilmsSuccess(data))
     }catch(e){
         console.log(e)
-        dispatch(sortFilmsAlphabeticallyFail(e.message))
+        dispatch(sortFilmsFail(e.message))
     }
 }
 

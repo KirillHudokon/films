@@ -1,4 +1,5 @@
 const Films = require("../models/films")
+const parseFile = require("../utils/parseFile")
 const mongoose = require("mongoose")
 const getFilms = async (req, res) => {
     try{
@@ -60,7 +61,7 @@ const searchFilms = async (req, res) => {
     }
 }
 const importFile = async (req, res) => {
-    const {file} = req.body;
-    console.log(file)
+    const {file} = req.body
+    parseFile(file.path)
 }
 module.exports = {getFilms, createFilm, deleteFilm, sortFilms, searchFilms, importFile}
