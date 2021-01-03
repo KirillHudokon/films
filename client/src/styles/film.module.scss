@@ -43,14 +43,18 @@
             }
         }
     }
-    .filmInfoContainer{
+    .filmContainer{
         box-sizing: border-box;
         padding: 10px;
-        .filmInfoVisibilityController{
-            margin-bottom: 15px;
-        }
-        .filmInfo{
-            margin-bottom: 8px;
+        .filmInfoContainer{
+            box-sizing: border-box;
+            padding: 10px;
+            .filmInfoVisibilityController{
+                margin-bottom: 15px;
+            }
+            .filmInfo{
+                margin-bottom: 8px;
+            }
         }
     }
 }

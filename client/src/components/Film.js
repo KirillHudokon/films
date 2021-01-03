@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {textValues} from '../utils/textValues'
 function Film({film, deleteFilm}) {
-    const [isOpen, setVisibility] = useState(true);
+    const [isOpen, setVisibility] = useState(false);
     const changeVisibility = (e) =>{
        setVisibility(!isOpen) 
     } 
     const renderButton = () => {
         return <Button variant="outlined" fullWidth={true} onClick={changeVisibility}>
-            {isOpen ? "Закрыть" : "Посмотреть"}
+            {isOpen ? "Close" : "Open"}
         </Button>
     }
     const renderFilmInfo = () => {
@@ -37,7 +37,7 @@ function Film({film, deleteFilm}) {
                     <DeleteIcon/>
                 </div>
             </header>
-            <main className={styles.filmInfoContainer}>
+            <main className={styles.filmContainer}>
                 <div className={styles.filmInfoVisibilityController}>
                     {renderButton()}
                 </div>               
