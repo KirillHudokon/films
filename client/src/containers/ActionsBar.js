@@ -1,9 +1,9 @@
 import {useState} from 'react'
 import {connect} from 'react-redux'
-import {sortFilms} from '../actions/'
+import {sortFilms} from '../actions'
 import styles from '../styles/actions.module.scss'
-import Action from './Action'
-import Modal from './Modal'
+import Action from '../components/Action'
+import Modal from '../components/Modal'
 import AddFilm from './AddFilm'
 function ActionsBar({sortFilms}) {
   const [isModalOpen, setModalVisibility] = useState(false)

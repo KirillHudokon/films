@@ -1,8 +1,8 @@
 import {useEffect} from 'react'
 import styles from '../styles/films.module.scss'
 import {connect} from 'react-redux'
-import {getFilms, deleteFilm} from '../actions/'
-import Film from './Film'
+import {getFilms, deleteFilm} from '../actions'
+import Film from '../components/Film'
 function Films({films, loading, getFilms, deleteFilm}) {
     useEffect(()=>{
         getFilms()

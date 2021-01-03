@@ -1,6 +1,6 @@
 import styles from '../styles/dragFile.module.scss'
 import {connect} from 'react-redux'
-import {importFile} from '../actions/'
+import {importFile} from '../actions'
 import {useDropzone} from 'react-dropzone'
 function DragFile({importFile}){
     const {getRootProps, getInputProps, isDragActive} = useDropzone({

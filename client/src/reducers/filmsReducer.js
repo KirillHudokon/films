@@ -19,7 +19,7 @@ export function filmsReducer(state=initialState, action) {
         case types.SORT_FILMS_SUCCESS:
         case types.SEARCH_FILMS_SUCCESS:    
         case types.IMPORT_FILE_SUCCESS:
-            return { films: action.payload, loading: false }
+            return { ...state, films: action.payload, loading: false }
         case types.GET_FILMS_FAIL:
         case types.ADD_FILM_FAIL: 
         case types.DELETE_FILM_FAIL:
