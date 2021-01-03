@@ -14,6 +14,12 @@ export class FilmsApi {
 
 export class FilmsActionsApi {
     sort(type){
-        return axios.post(`${url}/sort/${type}`)
+        return axios.get(`${url}/sort/${type}`)
+    }
+    searchBy(how, text){
+        return axios.post(`${url}/search/${how}`, {text})
+    }
+    import(file){
+        return axios.post(`${url}/import/`, file)
     }
 }

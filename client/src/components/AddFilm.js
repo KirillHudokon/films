@@ -58,10 +58,10 @@ function AddFilm({addFilm, closeModal}) {
                     message : 'release year must be a number'
                 }
             }
-            if(val.length < 4){
+            if(val<1000){
                 return {
                     name: 'releaseYear',
-                    message : 'not valid, length must be > 4'
+                    message : 'not valid, value must be >= 1000'
                 }
             }
         },

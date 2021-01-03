@@ -1,14 +1,12 @@
 import styles from '../styles/dragFile.module.scss'
+import {importFile} from '../actions/'
 import {useDropzone} from 'react-dropzone'
-function DragFile(){
+function DragFile({importFile}){
     const {getRootProps, getInputProps, isDragActive} = useDropzone({
         accept: ".txt",
         onDrop: (acceptedFiles) => {
           if(acceptedFiles.length){
-              console.log(acceptedFiles)
-            //savePhoto(
-             // Object.assign(acceptedFiles[0], { preview: URL.createObjectURL(acceptedFiles[0]), id:uuidv4() })
-            //)
+             importFile(acceptedFiles[0])
           }
         }
       })
@@ -23,4 +21,4 @@ function DragFile(){
     )
 }
 
-export default DragFile
+export default connect(null, {importFile})(DragFile)

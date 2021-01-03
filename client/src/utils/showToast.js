@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom';
 import {Snackbar} from '@material-ui/core';
 import {Alert} from '@material-ui/lab';
-function showToast(open, onClose, severity, text){
+function showToast(error, onClose, severity){
     return ReactDOM.createPortal(
         <Snackbar
-            open={open}
+            open={error}
             autoHideDuration={3000}
             onClose={onClose}
         >
             <Alert severity={severity}>
-                {text}
+                {error}
             </Alert>
         </Snackbar>
         , document.getElementById('root'),

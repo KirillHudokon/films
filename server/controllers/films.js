@@ -42,4 +42,21 @@ const sortFilms = async (req, res) => {
         await sortAlphabetically(req, res)
     }
 }
-module.exports = {getFilms, createFilm, deleteFilm, sortFilms}
+const searchFilms = async (req, res) => {
+    const { how } = req.params;
+    try{
+        if(how === 'stars'){
+           let findedFilms = (await Films.find()).filter(film => {
+                return film.stars.split(',').map(val=>val.trim()).filter(star=> star === req.body.text).length
+            })
+            res.status(200).json(findedFilms)
+        }
+        if(how === 'title'){
+            res.status(200).json(await Films.find({title: req.body.text}))
+        }
+    }catch(e){
+        console.log(e)
+        res.status(400).json({message:e.message})
+    }
+}
+module.exports = {getFilms, createFilm, deleteFilm, sortFilms, searchFilms}

@@ -1,51 +1,8 @@
 import * as types from '../types'
-import {FilmsApi, FilmsActionsApi} from '../api/'
+import {FilmsApi, FilmsActionsApi} from '../api'
 const filmsApi = new FilmsApi()
 const filmsActionsApi = new FilmsActionsApi()
-const films = [
-    {
-        "id": 1,
-        "Title": "Blazing Saddles", 
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 2,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 3,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 4,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 5,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-    {
-        "id": 6,
-        "Title": "Blazing Saddles",
-        "Release Year": 1974,
-         Format: "VHS",
-        "Stars": "Mel Brooks, Clevon Little, Harvey Korman, Gene Wilder, Slim Pickens, Madeline Kahn",      
-    },
-]
+
 export const getFilmsLoading = () => ({
     type: types.GET_FILMS_LOADING,
 })
@@ -55,18 +12,6 @@ export const getFilmsSuccess=(films)=>({
 })
 export const getFilmsFail=(error)=>({
     type: types.GET_FILMS_FAIL,
-    payload: error,
-})
-
-export const searchFilmsLoading = () => ({
-    type: types.SEARCH_FILM_LOADING,
-})
-export const searchFilmsSuccess=(films)=>({
-    type: types.SEARCH_FILM_SUCCESS,
-    payload: films,
-})
-export const searchFilmsFail=(error)=>({
-    type: types.SEARCH_FILM_FAIL,
     payload: error,
 })
 
@@ -106,23 +51,43 @@ export const sortFilmsAlphabeticallyFail=(error)=>({
     payload: error,
 })
 
+export const searchFilmsLoading = () => ({
+    type: types.SEARCH_FILMS_LOADING,
+})
+export const searchFilmsSuccess=(films)=>({
+    type: types.SEARCH_FILMS_SUCCESS,
+    payload: films
+})
+export const searchFilmsFail=(error)=>({
+    type: types.SEARCH_FILMS_FAIL,
+    payload: error,
+})
+
+export const importFileLoading = () => ({
+    type: types.IMPORT_FILE_LOADING,
+})
+export const importFileSuccess=(films)=>({
+    type: types.IMPORT_FILE_SUCCESS,
+    payload: films
+})
+export const importFileFail=(error)=>({
+    type: types.IMPORT_FILE_FAIL,
+    payload: error,
+})
+
+export const resetError = () => ({
+    type: types.RESET_ERROR
+})
+export const dispatchResetError = () => dispatch => dispatch(resetError())
+
 export const getFilms = () => async dispatch => {
     try{
         dispatch(getFilmsLoading())
         const {data} = await filmsApi.get()
         dispatch(getFilmsSuccess(data))
     }catch(e){
-        console.log(e)
         dispatch(getFilmsFail(e.message))
     }
-}
-export const searchBy = (by) => dispatch => {
-    dispatch(searchFilmsLoading())
-    return new Promise((rs,rj)=>{
-        setTimeout(()=>{
-            rs(dispatch(searchFilmsSuccess(films)))
-        },3000)
-    })
 }
 
 export const deleteFilm = (film) => async dispatch =>{
@@ -146,10 +111,31 @@ export const addFilm = (film) => async dispatch => {
 
 export const sortFilmsAlphabetically = () => async dispatch => {
     try{
-        dispatch(addFilmLoading())
+        dispatch(sortFilmsAlphabeticallyLoading())
         const {data} = await filmsActionsApi.sort('a-z')
-        dispatch(addFilmSuccess(data))
+        dispatch(sortFilmsAlphabeticallySuccess(data))
     }catch(e){
-        dispatch(addFilmFail(e.message))
+        console.log(e)
+        dispatch(sortFilmsAlphabeticallyFail(e.message))
+    }
+}
+
+export const searchFilms = (how, text) => async dispatch => {
+    try{
+        dispatch(searchFilmsLoading())
+        const {data} = await filmsActionsApi.searchBy(how, text)
+        dispatch(searchFilmsSuccess(data))
+    }catch(e){
+        console.log(e)
+        dispatch(searchFilmsFail(e.message))
+    }
+}
+export const importFile = (file) => async dispatch => {
+    try{
+        dispatch(importFileLoading())
+        const {data} = await filmsActionsApi.import(file)
+        dispatch(importFileSuccess(data))
+    }catch(e){
+        dispatch(importFileFail(e.message))
     }
 }
