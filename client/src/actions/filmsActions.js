@@ -105,7 +105,11 @@ export const addFilm = (film) => async dispatch => {
         const {data} = await filmsApi.post(film)
         dispatch(addFilmSuccess(data))
     }catch(e){
-        dispatch(addFilmFail(e.message))
+        if(e.response?.data?.message){
+            dispatch(addFilmFail(e.response.data.message))
+        }else{
+            dispatch(addFilmFail(e.message))
+        }
     }
 }
 
