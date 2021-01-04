@@ -3,7 +3,6 @@ const parseFile = require("../utils/parseFile")
 const mongoose = require("mongoose")
 const getFilms = async (req, res) => {
     try{
-        console.log(await Films.find())
         res.status(200).json(await Films.find())
     }catch(e){
         res.status(400).json({message: e.message})

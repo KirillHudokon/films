@@ -29,7 +29,7 @@ function Film({film, deleteFilm}) {
     }
     const renderFilmInfo = () => {
         const filmInfo = Object.entries(film).map(info => {
-            if(info[0] !== '_id' && info[0] !== '__v'){
+            if(info[0] !== 'title' && info[0] !== '__v'){
                 return <div key={`${film.id} - ${info[0]} : ${info[1]}`} className={styles.filmInfo}>
                     {`${textValues[info[0]]} : ${info[1]}`}
                 </div>
@@ -51,7 +51,7 @@ function Film({film, deleteFilm}) {
             <div className={styles.film} ref={ref}>
                 <header className={styles.filmHeader}>
                     <h3 className={styles.filmTitle}>
-                        id: {film._id}
+                        title: {film.title}
                     </h3>
                     <div className={styles.deleteFilm} onClick={changeModalVisibility}>
                         <DeleteIcon/>

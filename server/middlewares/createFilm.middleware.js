@@ -15,7 +15,6 @@ const validateCreateFilm = async (req,res,next) => {
                 stars: false
             }
             let currentFilm = allFilms[i]
-            console.log(currentFilm)
             if(reqFilm.title.trim().toLowerCase() === currentFilm.title.trim().toLowerCase()){
                 isEqual.title = true
             }
