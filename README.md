@@ -39,7 +39,7 @@ Back-end
 * Express
 * MongoDB
 
-# Архитекрута
+# Архитектура
 
 Front-end
 
