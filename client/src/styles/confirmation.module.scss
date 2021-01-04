@@ -1,0 +1,27 @@
+.confirmationTitle{
+    text-align: center;
+    font-size: 20px;
+    font-family: 'RobotoBold';
+    margin-bottom: 30px;
+}
+.actionContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.actionButton{
+    width: 100px;
+    height: 35px;
+    border: none;
+    outline: none;
+    background: none;
+    font-family: "RobotoRegular";
+    border-radius: 10px;
+    cursor: pointer;
+}
+.actionSuccess{
+    background-color: rgba(240, 0, 40, 0.925);
+}
+.actionClose{
+    background-color: rgba(104, 219, 123, 0.993);
+}

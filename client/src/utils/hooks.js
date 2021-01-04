@@ -12,6 +12,15 @@ const useAddNewStyles = makeStyles({
     color: 'white'
   },
 });
+const yesStyles = makeStyles({
+  root: {
+    width: '100px',
+    height: '40px',
+    display: 'block',
+    color: 'white',
+    backgroundColor: 'red'
+  },
+});
 
 
-export {useActionStyles, useAddNewStyles}
+export {useActionStyles, useAddNewStyles, yesStyles}
