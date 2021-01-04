@@ -30,8 +30,15 @@ const sortFilms = async (req, res) => {
     const { type } = req.params
     try{
         if(type.toLowerCase() === 'a-z'){
-            const sort = {title: 1}
-            res.status(200).json(await Films.find().sort(sort))
+            res.status(200).json((await Films.find()).sort((a,b)=> {
+                if(a.title.toLowerCase() > b.title.toLowerCase()){
+                    return 1    
+                 }
+                 if(a.title.toLowerCase() < b.title.toLowerCase()){
+                    return -1
+                 }
+                    return 0
+            }))
         }
     }catch(e){
         res.status(400).json({message: e.message})

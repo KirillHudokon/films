@@ -16,7 +16,7 @@ function ActionsBar({sortFilms}) {
   return (
    <>   
         <div className={styles.actions}>
-            <Action label="Filter" value="Sort A-Z" action={sortFilms}/>
+            <Action label="Actions" value="Sort A-Z" action={sortFilms}/>
             <Action label="Add new" value="+" action={changeModalVisibility}/>
         </div>
         {renderModal()}
