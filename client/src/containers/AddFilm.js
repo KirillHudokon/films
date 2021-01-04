@@ -72,6 +72,12 @@ function AddFilm({addFilm, closeModal}) {
                     message : 'not valid, length must be > 3'
                 }
             }
+            if([...new Set(val.split(',').map(field=> field.trim().toLowerCase()))].length !== val.split(',').map(field=> field.trim().toLowerCase()).length){
+                return {
+                    name: 'stars',
+                    message : 'not valid, please remove same stars'
+                }
+            }
         }
     }
     const filterErrors = Object.entries(state).map(info => {
