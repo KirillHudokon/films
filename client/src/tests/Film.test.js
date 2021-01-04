@@ -21,7 +21,7 @@ describe("Testing <Film/> Component", () => {
             />
         );
         it('testing id in component is same as in props', ()=>{
-            chai.expect(wrapper.find('.filmTitle').text()).to.equal(`id: ${film._id}`)
+            chai.expect(wrapper.find('.filmTitle').text()).to.equal(`title: ${film.title}`)
         })
         it('testing closed button', ()=> {
             chai.expect(wrapper.find('.filmInfoVisibilityController').text()).to.equal('Open')
@@ -39,7 +39,7 @@ describe("Testing <Film/> Component", () => {
         );
         wrapper.find('.filmInfoVisibilityController').children().simulate('click')
         it('testing id in component is same as in props', ()=>{
-            chai.expect(wrapper.find('.filmTitle').text()).to.equal(`id: ${film._id}`)
+            chai.expect(wrapper.find('.filmTitle').text()).to.equal(`title: ${film.title}`)
         })
         it('testing opened button', ()=> {
             chai.expect(wrapper.find('.filmInfoVisibilityController').text()).to.equal('Close')

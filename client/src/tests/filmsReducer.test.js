@@ -70,7 +70,11 @@ describe('testing filmsReducer', ()=>{
                 type: types.ADD_FILM_FAIL,
                 payload: 'error'
             }
-            chai.expect(filmsReducer(fakeSuccessState,action)).to.deep.equal(failState(action))
+            chai.expect(filmsReducer(fakeSuccessState,action)).to.deep.equal({
+                ...fakeSuccessState,
+                loading: false,
+                error: action.payload
+            })
         })
     })
     describe('testing reducer while deleting film', () => {
