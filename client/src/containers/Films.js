@@ -7,6 +7,7 @@ function Films({films, loading, getFilms, deleteFilm}) {
     useEffect(()=>{
         getFilms()
     }, [getFilms])
+
     const renderFilms = () => {
         if(loading){
             return <div className={styles.filmsInfo}>

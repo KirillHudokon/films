@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import styles from '../styles/main.module.scss'
 import {connect} from 'react-redux'
 import {dispatchResetError,searchFilms, getFilms} from '../actions'

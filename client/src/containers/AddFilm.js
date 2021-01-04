@@ -93,7 +93,7 @@ function AddFilm({addFilm, closeModal}) {
   const renderFields = () => {
     return Object.keys(initialState).map(field=>{
         const error = errors.find(fieldError=> fieldError.name === field)
-        return <div className={styles.field}>
+        return <div className={styles.field} key={field}>
             <TextField 
                 required
                 error={error} 

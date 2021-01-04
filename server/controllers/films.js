@@ -3,19 +3,16 @@ const parseFile = require("../utils/parseFile")
 const mongoose = require("mongoose")
 const getFilms = async (req, res) => {
     try{
-        const filmsRes = await Films.find();
-        res.status(200).json(filmsRes)
+        res.status(200).json(await Films.find())
     }catch(e){
         res.status(400).json({message: e.message})
     }
 }
 const createFilm = async (req, res) => {
     try{
-        const post = req.body
-        const newFilm = new Films(post)
+        const newFilm = new Films(req.body)
         await newFilm.save()
-        const allFilms = await Films.find();
-        res.status(201).json(allFilms)
+        res.status(201).json(await Films.find())
     }catch(e){
         res.status(409).json({message: e.message})
     }
@@ -29,18 +26,15 @@ const deleteFilm = async (req, res) => {
         res.status(400).json({message: e.message})
     }
 }
-const sortAlphabetically = async (req,res) => {
-    const sort = {title: 1}
-    try{
-        res.status(200).json(await Films.find().sort(sort))
-    }catch(e){
-        res.status(400).json({message: e.message})
-    }
-}
 const sortFilms = async (req, res) => {
     const { type } = req.params
-    if(type.toLowerCase() === 'a-z'){
-        await sortAlphabetically(req, res)
+    try{
+        if(type.toLowerCase() === 'a-z'){
+            const sort = {title: 1}
+            res.status(200).json(await Films.find().sort(sort))
+        }
+    }catch(e){
+        res.status(400).json({message: e.message})
     }
 }
 const searchFilms = async (req, res) => {
@@ -56,13 +50,18 @@ const searchFilms = async (req, res) => {
             res.status(200).json(await Films.find({title: req.body.text}))
         }
     }catch(e){
-        console.log(e)
         res.status(400).json({message:e.message})
     }
 }
 const importFile = async (req, res) => {
-    console.log(req.files.file)
-    //const {file} = req.body
-    //parseFile(file.path)
+    try{
+        const insertFilms = async (films) => {
+            await Films.insertMany(films);
+            res.status(200).json(await Films.find())
+        }
+        parseFile(__dirname + req.filePath, insertFilms);
+    }catch(e){
+        res.status(400).json({message:e.message})
+    }
 }
 module.exports = {getFilms, createFilm, deleteFilm, sortFilms, searchFilms, importFile}
