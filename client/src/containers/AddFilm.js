@@ -58,10 +58,10 @@ function AddFilm({addFilm, closeModal}) {
                     message : 'release year must be a number'
                 }
             }
-            if(val<1000){
+            if(val<1850 || val>2020){
                 return {
                     name: 'releaseYear',
-                    message : 'not valid, value must be >= 1000'
+                    message : 'not valid, value must be >= 1850 and <= 2020'
                 }
             }
         },
