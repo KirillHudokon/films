@@ -51,7 +51,7 @@ function Film({film, deleteFilm}) {
             <div className={styles.film} ref={ref}>
                 <header className={styles.filmHeader}>
                     <h3 className={styles.filmTitle}>
-                        title: {film.title}
+                        {film.title}
                     </h3>
                     <div className={styles.deleteFilm} onClick={changeModalVisibility}>
                         <DeleteIcon/>
